@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: magento-container
-          image: docker
+          image: docker-image
           imagePullPolicy: Always
           ports:
             - containerPort: 80
