@@ -1,40 +1,43 @@
 pipeline {
-  environment {
-    dockerimagename = "gajendragangwar/kubernetes-hub-repo"
-    dockerImage = ""
-  }
+
   agent any
+
   stages {
+
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/Ga830/magento-kubernetes-jenkin.git'
+        git url:'https://github.com/Ga830/magento2.3.1.git', branch:'main'
       }
     }
-    stage('Build image') {
-      steps{
-        script {
-          dockerImage = docker.build dockerimagename
+    
+      stage("Build image") {
+            steps {
+                script {
+                    myapp = docker.build("gajendragangwar/kubernetes-hub-repo:${env.BUILD_ID}")
+                }
+            }
         }
-      }
-    }
-    stage('Pushing Image') {
-      environment {
-               registryCredential = 'dockerhub'
-           }
-      steps{
-        script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("latest")
-          }
+    
+      stage("Push image") {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                            myapp.push("latest")
+                            myapp.push("${env.BUILD_ID}")
+                    }
+                }
+            }
         }
-      }
-    }
-    stage('Deploying magento container to Kubernetes') {
+
+    
+    stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubernetes")
+          kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "")
         }
       }
     }
+
   }
+
 }
