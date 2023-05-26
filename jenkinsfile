@@ -6,7 +6,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git url:'https://github.com/Ga830/magento2.3.1.git', branch:'main'
+        git url:'https://github.com/Ga830/magento-kubernetes-jenkin.git', branch:'main'
       }
     }
     
