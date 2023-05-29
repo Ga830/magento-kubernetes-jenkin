@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: magento-deployment
+  name: magento
 spec:
   replicas: 1
   selector:
@@ -13,8 +13,8 @@ spec:
         app: magento
     spec:
       containers:
-        - name: magento-container
-          image: gajendragangwar/kubernetes-hub-repo:latest
+        - name: magento
+          image: kuberegistry123.azurecr.io/magento-registry:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: magento-service
+  name: magento
 spec:
   type: LoadBalancer
   ports:
