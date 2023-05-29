@@ -33,7 +33,7 @@ pipeline {
     stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yml", "service.yml", kubeConfigId: "kubernetes-cren" )
+          kubernetesDeploy(configs: "deployment.yml", kubeConfigId: "kubernetes-cren" )
         }
       }
     }
