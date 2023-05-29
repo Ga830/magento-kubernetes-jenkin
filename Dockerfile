@@ -1,6 +1,5 @@
 FROM alexcheng/magento2:latest
 
-#Setup Working Directory
 WORKDIR /var/www/html
 RUN rm -rf *
 COPY . .
