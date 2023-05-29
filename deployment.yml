@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: magento
-          image: kuberegistry123.azurecr.io/magento-registry:latest
+          image: gajendragangwar/kubernetes-hub-repo:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
