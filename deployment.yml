@@ -24,10 +24,9 @@ kind: Service
 metadata:
   name: magento-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
-  - protocol: TCP
-    port: 80
+  - port: 80
   selector:
     app: magento
 
