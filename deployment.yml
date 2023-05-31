@@ -24,7 +24,7 @@ kind: Service
 metadata:
   name: magento-ser
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 80
   selector:
