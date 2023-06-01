@@ -1,7 +1,7 @@
 apiVersion: apps/v1
-kind: Deployment-magento
+kind: Deployment
 metadata:
-  name: magento-deploy
+  name: magento-d
 spec:
   replicas: 1
   selector:
@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: magento-serice
+  name: magento-s
 spec:
   type: LoadBalancer
   ports:
